@@ -1,0 +1,39 @@
+#ifndef _CHESS_H_
+#define _CHESS_H_
+
+//棋子颜色   内在属性 可以共享
+enum PieceColor {BLACK, WHITE};  
+
+//棋子位置  外在属性 作区分
+struct PiecePos  
+{  
+    int x;  
+    int y;  
+    PiecePos(int a, int b): x(a), y(b) {}  
+};  
+//棋子定义  
+class Piece  
+{  
+protected:  
+    PieceColor m_color; //颜色  
+public:  
+    Piece(PieceColor color): m_color(color) {}  
+    ~Piece() {}  
+    virtual void Draw() {}  
+};  
+class BlackPiece: public Piece  
+{  
+public:  
+    BlackPiece(PieceColor color): Piece(color) {}  
+    ~BlackPiece() {}  
+    void Draw() { cout<<"绘制一颗黑棋\n"; }  
+};  
+class WhitePiece: public Piece  
+{  
+public:  
+    WhitePiece(PieceColor color): Piece(color) {}  
+    ~WhitePiece() {}  
+    void Draw() { cout<<"绘制一颗白棋\n";}  
+};  
+
+#endif
